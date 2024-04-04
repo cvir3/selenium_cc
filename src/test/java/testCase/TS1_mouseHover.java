@@ -36,21 +36,18 @@ public class TS1_mouseHover {
         WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(20));
         wait.until(ExpectedConditions.visibilityOf(element));
         action.moveToElement(element).build().perform();
-        Thread.sleep(2000);
 
         //Get Price
         WebElement priceElement = webDriver.findElement(By.xpath("//p[@class=\"current-price\"]"));
         String expectedPrice = priceElement.getText();
-        System.out.println("Expected price is " + expectedPrice);
-        String actualPrice = priceElement.getText();
-        System.out.println("Actual price is " + actualPrice);
-        if(expectedPrice.equals(actualPrice)){
-            System.out.println("Test Pass");
-        }else {
-            System.out.println("Test Fail");
+        String actualPrice = "$24.96";
+        if (actualPrice.equals(expectedPrice)) {
+            System.out.println("Test Passed! Current price is: " + actualPrice);
+        } else {
+            System.out.println("Test Failed! Expected price: " + expectedPrice + ", but found: " + actualPrice);
+            //The phrase "but found" is used to indicate a comparison between an expected value and an actual value.
         }
     }
-
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
